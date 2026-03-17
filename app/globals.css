@@ -1,0 +1,8 @@
+html {
+  scroll-behavior: smooth;
+}
+
+section,
+footer {
+  scroll-margin-top: 4rem;
+}

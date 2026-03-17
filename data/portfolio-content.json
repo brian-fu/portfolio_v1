@@ -1,0 +1,76 @@
+{
+  "skillCategories": [
+    {
+      "category": "Frontend",
+      "skills": ["React", "Next.js", "TypeScript", "HTML", "CSS"]
+    },
+    {
+      "category": "Backend",
+      "skills": ["Node.js", "Express", "REST APIs", "Authentication"]
+    },
+    {
+      "category": "Database",
+      "skills": ["PostgreSQL", "MySQL", "MongoDB", "Prisma"]
+    },
+    {
+      "category": "Cloud",
+      "skills": ["AWS", "Docker", "CI/CD", "Serverless"]
+    },
+    {
+      "category": "Tools",
+      "skills": ["Git", "GitHub Actions", "Jest", "Postman"]
+    }
+  ],
+  "experiences": [
+    {
+      "role": "Software Developer",
+      "company": "University of Waterloo Blueprint",
+      "dates": "January 2026 - Present",
+      "bullets": [
+        "larp",
+        "larp",
+        "larp"
+      ]
+    },
+    {
+      "role": "Full-Stack Developer Intern",
+      "company": "Workplace Safety Insurance Board Innovation Lab",
+      "dates": "January 2026 - April 2026",
+      "bullets": [
+        "larp",
+        "larp",
+        "larp"
+      ]
+    },
+    {
+      "role": "Software Engineer Intern",
+      "company": "Workplace Saftey Insurance Board",
+      "dates": "May 2025 - August 2025",
+      "bullets": [
+        "larp",
+        "larp",
+        "larp"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Project 1",
+      "description": "A placeholder project for managing tasks, priorities, and team progress.",
+      "github": "https://github.com/janedoe/project-atlas",
+      "demo": "https://example.com/project-atlas"
+    },
+    {
+      "name": "Project 2",
+      "description": "A placeholder app that stores and organizes notes with search support.",
+      "github": "https://github.com/janedoe/cloud-journal",
+      "demo": "https://example.com/cloud-journal"
+    },
+    {
+      "name": "Project 3",
+      "description": "A placeholder analytics dashboard for tracking product engagement metrics.",
+      "github": "https://github.com/janedoe/insight-board",
+      "demo": "https://example.com/insight-board"
+    }
+  ]
+}
