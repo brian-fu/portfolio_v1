@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import StarfieldBackground from "./components/starfield-background";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -13,7 +14,10 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <StarfieldBackground />
+        <div className="page-content">{children}</div>
+      </body>
     </html>
   );
 }
