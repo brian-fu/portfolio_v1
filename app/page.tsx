@@ -4,7 +4,6 @@ import Footer from "@/app/components/Footer";
 import Hero from "@/app/components/Hero";
 import Navbar from "@/app/components/Navbar";
 import Projects from "@/app/components/Projects";
-import Skills from "@/app/components/Skills";
 
 export default function HomePage() {
   return (
@@ -12,7 +11,6 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        <Skills />
         <Experience />
         <Projects />
         <Contact />

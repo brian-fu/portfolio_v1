@@ -1,76 +1,70 @@
 {
-  "skillCategories": [
-    {
-      "category": "Frontend",
-      "skills": ["React", "Next.js", "TypeScript", "HTML", "CSS"]
-    },
-    {
-      "category": "Backend",
-      "skills": ["Node.js", "Express", "REST APIs", "Authentication"]
-    },
-    {
-      "category": "Database",
-      "skills": ["PostgreSQL", "MySQL", "MongoDB", "Prisma"]
-    },
-    {
-      "category": "Cloud",
-      "skills": ["AWS", "Docker", "CI/CD", "Serverless"]
-    },
-    {
-      "category": "Tools",
-      "skills": ["Git", "GitHub Actions", "Jest", "Postman"]
-    }
-  ],
+  "aboutMe": "Hi, I'm Brian! I'm a Software Engineer looking to apply my skills to complex problems. My interest right now are Distributed Systems and Agentic AI. Outside of work I play a lot of Hockey and am big Leafs fan. I also recently got into golf so I am always looking for swing tips to improve!",
   "experiences": [
     {
+      "role": "Bachelor's of Computer Science",
+      "company": "University of Waterloo",
+      "logo": "/logos/university-of-waterloo.jpg",
+      "dates": "Expected Graduation: 2028",
+      "bullets": []
+    },
+    {
+      "role": "Software Engineer Intern",
+      "company": "Shopify",
+      "logo": "/logos/shopify.jpg",
+      "dates": "Incoming Summer 2026",
+      "bullets": []
+    },
+    {
       "role": "Software Developer",
-      "company": "University of Waterloo Blueprint",
+      "company": "UW Blueprint",
+      "logo": "/logos/blueprint.jpg",
       "dates": "January 2026 - Present",
       "bullets": [
-        "larp",
-        "larp",
-        "larp"
+        "Working with Home Again Furniture Bank to create a robust CRM system for delivery optimization."
       ]
     },
     {
       "role": "Full-Stack Developer Intern",
-      "company": "Workplace Safety Insurance Board Innovation Lab",
+      "company": "WSIB Innovation Lab",
+      "logo": "/logos/wsib_innovation_lab_logo.jpg",
       "dates": "January 2026 - April 2026",
       "bullets": [
-        "larp",
-        "larp",
-        "larp"
+        "Built an agentic document processor to expedite case manager workflows."
       ]
     },
     {
       "role": "Software Engineer Intern",
       "company": "Workplace Saftey Insurance Board",
+      "logo": "/logos/wsib.jpg",
       "dates": "May 2025 - August 2025",
       "bullets": [
-        "larp",
-        "larp",
-        "larp"
+        "API Development for WSIB's core eService insurance platform using Java Spring."
       ]
     }
   ],
   "projects": [
     {
-      "name": "Project 1",
-      "description": "A placeholder project for managing tasks, priorities, and team progress.",
-      "github": "https://github.com/janedoe/project-atlas",
-      "demo": "https://example.com/project-atlas"
+      "name": "AdBrain",
+      "description": "Tailored AI generated ads from product images/descriptions.",
+      "github": "https://github.com/brian-fu/adbrain",
+      "image": "/projects/adbrain.jpg",
+      "technologies": ["TypeScript", "Python", "AWS S3", "Supabase", "PostgreSQL"]
     },
     {
-      "name": "Project 2",
-      "description": "A placeholder app that stores and organizes notes with search support.",
-      "github": "https://github.com/janedoe/cloud-journal",
-      "demo": "https://example.com/cloud-journal"
+      "name": "Puckdle",
+      "description": "-dle style guessing game for hockey powered by the NHL API.",
+      "github": "https://github.com/brian-fu/puckdle",
+      "image": "/projects/puckdle.jpg",
+      "technologies": ["FastAPI","TypeScript", "React", "PostgreSQL", "Docker"]
     },
     {
-      "name": "Project 3",
-      "description": "A placeholder analytics dashboard for tracking product engagement metrics.",
-      "github": "https://github.com/janedoe/insight-board",
-      "demo": "https://example.com/insight-board"
+      "name": "Videofy",
+      "description": "Sythesize PDF file content into a \"TikTok\" style Minecraft parkour video with subtitles and TTS naration.",
+      "github": "https://github.com/brian-fu/videofy",
+      "demo": "https://www.youtube.com/watch?v=SypH9FjR0Fs",
+      "image": "/projects/videofy.jpg",
+      "technologies": ["Express", "React", "FFmpeg", "OpenAI API"]
     }
   ]
 }

@@ -21,7 +21,6 @@ export default function Navbar() {
     const height = anchorRect.height;
 
     if (!hasShown.current) {
-      // First hover: position instantly, then fade in
       glider.style.transition = 'opacity 150ms ease';
       glider.style.left = `${left}px`;
       glider.style.top = `${top}px`;
@@ -58,8 +57,7 @@ export default function Navbar() {
       >
         <span ref={gliderRef} className="nav-glider" aria-hidden="true" />
         <a href="#home" onMouseEnter={(e) => moveGlider(e.currentTarget)}>Home</a>
-        <a href="#skills" onMouseEnter={(e) => moveGlider(e.currentTarget)}>Skills</a>
-        <a href="#experience" onMouseEnter={(e) => moveGlider(e.currentTarget)}>Experience</a>
+        <a href="#about" onMouseEnter={(e) => moveGlider(e.currentTarget)}>About Me</a>
         <a href="#projects" onMouseEnter={(e) => moveGlider(e.currentTarget)}>Projects</a>
         <a href="#contact" onMouseEnter={(e) => moveGlider(e.currentTarget)}>Contact</a>
         <span className="nav-divider" aria-hidden="true" />

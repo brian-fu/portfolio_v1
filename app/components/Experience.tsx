@@ -1,24 +1,48 @@
 import content from "@/data/portfolio-content.json";
 
-const { experiences } = content;
+const { aboutMe, experiences } = content;
+
+function getCompanyInitials(company: string) {
+  return company
+    .split(" ")
+    .filter(Boolean)
+    .map((word) => word[0]?.toUpperCase() ?? "")
+    .join("")
+    .slice(0, 2);
+}
 
 export default function Experience() {
   return (
-    <section id="experience">
-      <h2>Experience</h2>
-      {experiences.map((job) => (
-        <article key={`${job.company}-${job.role}`}>
-          <h3>{job.role}</h3>
-          <p>
-            <strong>{job.company}</strong> | {job.dates}
-          </p>
-          <ul>
-            {job.bullets.map((bullet) => (
-              <li key={bullet}>{bullet}</li>
-            ))}
-          </ul>
-        </article>
-      ))}
+    <section id="about" className="experience-section">
+      <div className="experience-inner">
+        <h2 className="experience-heading">About Me</h2>
+        <p className="experience-about">{aboutMe}</p>
+
+        <div className="experience-timeline">
+          {experiences.map((job) => (
+            <article className="experience-item" key={`${job.company}-${job.role}`}>
+              <div className="experience-marker" aria-hidden="true">
+                {job.logo ? (
+                  <img className="experience-logo" src={job.logo} alt="" />
+                ) : (
+                  <span>{getCompanyInitials(job.company)}</span>
+                )}
+              </div>
+
+              <div className="experience-content">
+                <p className="experience-dates">{job.dates}</p>
+                <h3 className="experience-company">{job.company}</h3>
+                <p className="experience-role">{job.role}</p>
+                <ul className="experience-bullets">
+                  {job.bullets.map((bullet, index) => (
+                    <li key={`${job.company}-${job.role}-${index}`}>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
