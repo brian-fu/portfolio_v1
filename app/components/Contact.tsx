@@ -15,11 +15,11 @@ export default function Contact() {
           <div className="contact-row">
             <div className="contact-field">
               <label htmlFor="name">Full Name</label>
-              <input id="name" name="name" type="text" placeholder="Kai Cenat" />
+              <input id="name" name="name" type="text" placeholder="Lavar Ball" />
             </div>
             <div className="contact-field">
               <label htmlFor="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="kaicenat@uwaterloo.ca" />
+              <input id="email" name="email" type="email" placeholder="lamelloball@uwaterloo.ca" />
             </div>
           </div>
 
@@ -34,7 +34,7 @@ export default function Contact() {
           </div>
 
           <div className="contact-submit-row">
-            <button type="submit" className="contact-submit">
+            <button type="button" className="contact-submit">
               Submit
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M22 2 11 13M22 2 15 22l-4-9-9-4 20-7z" />
