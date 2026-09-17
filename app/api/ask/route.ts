@@ -6,6 +6,7 @@ const MAX_MESSAGE_CHARS = 500;
 const MAX_TURNS = 10;
 const RATE_LIMIT = 10;
 const RATE_WINDOW_MS = 60_000;
+const REQUEST_TIMEOUT_MS = 12_000;
 
 type ChatMessage = { from: "you" | "bot"; text: string };
 
@@ -93,6 +94,7 @@ export async function POST(request: Request) {
           // Room for thinking tokens, which count toward this cap; reply length is set by the prompt.
           maxOutputTokens: 1200,
           temperature: 0.4,
+          httpOptions: { timeout: REQUEST_TIMEOUT_MS },
         },
       });
       const reply = response.text?.trim();
@@ -106,7 +108,7 @@ export async function POST(request: Request) {
     try {
       reply = await ask();
     } catch (err) {
-      // Gemini occasionally returns a transient 5xx; one retry clears it.
+      // Transient failures (5xx, timeouts, MALFORMED_RESPONSE) usually clear on one retry.
       if (err instanceof ApiError && err.status < 500) throw err;
       console.warn("gemini request failed, retrying", err);
       reply = await ask();
