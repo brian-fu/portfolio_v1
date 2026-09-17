@@ -1,23 +1,22 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { chatExamples, email } from "@/data/site";
+import { chatExamples } from "@/data/site";
 
 type Message = { id: number; from: "you" | "bot"; text: string };
 
-// getReply() is the only thing to change to connect a real backend, e.g. fetch("/api/ask").
-async function getReply(message: string): Promise<string> {
-  await new Promise((r) => setTimeout(r, 650));
-  const q = message.toLowerCase();
-  if (q.includes("leetdraw"))
-    return "a whiteboard layered on leetcode that saves your scratch work straight to github.";
-  if (q.includes("rally"))
-    return "a feed for campus intramurals at waterloo — signups, drop-ins, results. still going.";
-  if (/(work|hire|hiring|job|intern|available|looking)/.test(q))
-    return "open to internship conversations — email is the fastest way to reach him.";
-  if (/(reach|contact|email|talk|connect)/.test(q))
-    return `email ${email}, or find him on linkedin or github (icons on the home page).`;
-  return "i'm a stub for now — brian hasn't wired me up yet. try email in the meantime.";
+async function getReply(history: Message[]): Promise<string> {
+  const res = await fetch("/api/ask", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      messages: history.map(({ from, text }) => ({ from, text })),
+    }),
+  });
+  if (res.status === 429) return "you're asking fast — give me a minute and try again.";
+  if (!res.ok) throw new Error(`ask failed: ${res.status}`);
+  const data: { reply: string } = await res.json();
+  return data.reply;
 }
 
 export default function Chat() {
@@ -57,10 +56,14 @@ export default function Chat() {
     if (!t || busy) return;
     setBusy(true);
     setInput("");
-    setMessages((m) => [...m, { id: nextId.current++, from: "you", text: t }]);
+    const history: Message[] = [
+      ...messages,
+      { id: nextId.current++, from: "you", text: t },
+    ];
+    setMessages(history);
     let reply: string;
     try {
-      reply = await getReply(t);
+      reply = await getReply(history);
     } catch {
       reply = "something went wrong on my end — try email instead.";
     }
@@ -127,7 +130,11 @@ export default function Chat() {
           {busy && (
             <div className="msg bot">
               <span className="who">brian:</span>
-              <span className="caret">_</span>
+              <span className="thinking" aria-label="thinking">
+                <span />
+                <span />
+                <span />
+              </span>
             </div>
           )}
         </div>

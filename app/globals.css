@@ -77,7 +77,8 @@ html.dark .hm .theme svg { transform: rotate(180deg); }
 .hm a:hover { text-decoration-color: currentColor; text-underline-offset: 4px; }
 .hm .glyph { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; color: var(--muted); text-decoration: none; transition: color .4s ease, opacity .4s ease; }
 .hm .glyph:hover { color: var(--ink); }
-.hm .mk { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; margin-right: 5px; border-radius: 3px; background: var(--ink); color: var(--paper); font-size: 9px; font-weight: 600; line-height: 1; vertical-align: -1px; font-family: system-ui, sans-serif; text-decoration: none; }
+.hm .mk { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; margin-right: 5px; border-radius: 3px; background: var(--ink); color: var(--paper); font-size: 9px; font-weight: 600; line-height: 1; vertical-align: 1px; font-family: system-ui, sans-serif; text-decoration: none; }
+.hm .mk.logo { object-fit: cover; background: none; margin-left: 3px; vertical-align: -1px; }
 .hm .line { transition: letter-spacing .6s ease, opacity .6s ease; }
 .hm .line:hover { letter-spacing: .01em; }
 .hm .ln { position: relative; }
@@ -149,6 +150,11 @@ html.dark .hm .theme svg { transform: rotate(180deg); }
 .hm .msg .pfx { position: absolute; left: 0; top: 0; color: var(--muted); }
 .hm .msg.bot { padding-left: 0; }
 .hm .msg .who { color: var(--muted); margin-right: 6px; }
+@keyframes cb-think { 0%, 80%, 100% { opacity: .25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+.hm .thinking { display: inline-flex; align-items: center; gap: 4px; height: 1em; vertical-align: -1px; }
+.hm .thinking span { width: 4px; height: 4px; border-radius: 50%; background: var(--ink); animation: cb-think 1.2s cubic-bezier(.45,0,.55,1) infinite; }
+.hm .thinking span:nth-child(2) { animation-delay: .15s; }
+.hm .thinking span:nth-child(3) { animation-delay: .3s; }
 .hm .ex { display: block; font: inherit; color: var(--ink); background: none; border: 0; padding: 2px 0; text-align: left; cursor: pointer; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; transition: text-decoration-color .4s ease, letter-spacing .4s ease; }
 .hm .ex:hover, .hm .ex:focus-visible { text-decoration-color: currentColor; letter-spacing: .01em; outline: none; }
 .hm .chat-in { position: relative; display: flex; align-items: center; gap: 8px; padding: 0 8px 0 14px; height: 46px; border-top: 1px solid var(--rule); }
@@ -165,6 +171,7 @@ html.dark .hm .theme svg { transform: rotate(180deg); }
 @media (prefers-reduced-motion: reduce) {
   .hm .chat, .hm .chat.open { transform: none; transition: opacity .01s linear, visibility 0s; }
   .hm .caret, .hm .msg, .hm .pointer, .hm .track { animation: none; }
+  .hm .thinking span { animation: none; opacity: .6; }
   .hm .launch, .hm .send { transition: none; }
 }
 
