@@ -75,10 +75,6 @@ export const projects: Project[] = [
   },
 ];
 
-// Extra context for the chatbot beyond what's listed above. Keep it factual.
-export const about =
-  "open to software engineering internship opportunities. the best way to reach me is email.";
-
 // Suggested questions shown in the chat widget before the first message.
 export const chatExamples = [
   "where have you worked?",
