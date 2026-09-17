@@ -86,11 +86,3 @@ export const chatExamples = [
   "how do i reach you?",
 ];
 
-// Swap `src: null` for an image path (e.g. "/gallery/01.jpg") to replace the placeholder square.
-export const gallery: { src: string | null; alt: string }[] = Array.from(
-  { length: 10 },
-  (_, i) => ({
-    src: null,
-    alt: `photo ${i + 1}`,
-  }),
-);

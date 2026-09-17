@@ -55,7 +55,7 @@ export default function HomePage() {
     <main className="col col-home">
       <NameToggle footer={glyphs}>
         <div className="grp fade f2">
-          <div className="ln lbl">studying</div>
+          <div className="ln lbl">currently</div>
           <div className="ln line">
             <Hang />
             cs at <img className="mk logo" src={school.logo} alt="" />
@@ -65,7 +65,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="grp fade f3">
-          <div className="ln lbl">worked as</div>
+          <div className="ln lbl">previously</div>
           {experience.map((job) => (
             <div key={job.org.label} className="ln line">
               <Hang />

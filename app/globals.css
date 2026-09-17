@@ -12,10 +12,10 @@ html, body { margin: 0; background: #E9E1D6; }
   --faint: #9A9387;
   --launch-bg: rgba(250,248,240,.55);
   --ph: #FFFFFF;
-  --grain-op: .16;
-  --grain-card-op: .12;
+  --grain-op: .22;
+  --grain-card-op: .16;
   --grain-blend: multiply;
-  --bg: radial-gradient(90% 75% at 30% 62%, #FAF8F0 0%, #E9E1D6 50%, #D1C8B6 100%);
+  --bg: radial-gradient(90% 75% at 30% 62%, #FFFDF6 0%, #E9E1D6 50%, #C3B7A0 100%);
   background: var(--bg);
   color: var(--ink);
   transition: color .5s ease;
@@ -29,10 +29,10 @@ html.dark .hm {
   --faint: #7D766A;
   --launch-bg: rgba(35,32,28,.6);
   --ph: #2B2824;
-  --grain-op: .09;
-  --grain-card-op: .07;
+  --grain-op: .13;
+  --grain-card-op: .10;
   --grain-blend: screen;
-  --bg: radial-gradient(90% 75% at 30% 62%, #2C2823 0%, #1F1C19 50%, #141210 100%);
+  --bg: radial-gradient(90% 75% at 30% 62%, #37322B 0%, #1F1C19 50%, #0C0A09 100%);
 }
 html.dark, html.dark body { background: #1F1C19; }
 html { color-scheme: light; }
@@ -124,8 +124,8 @@ html.dark .hm .theme svg { transform: rotate(180deg); }
 .hm .strip { position: absolute; left: 0; right: 0; height: 220px; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%); mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%); }
 .hm .strip-1 { top: 220px; }
 .hm .strip-2 { top: 460px; }
-.hm .track { display: flex; gap: 20px; width: max-content; animation: drift 80s linear infinite; }
-.hm .track.rev { animation-duration: 95s; animation-direction: reverse; }
+.hm .track { display: flex; gap: 20px; width: max-content; animation: drift var(--drift, 600s) linear infinite; }
+.hm .track.rev { animation-direction: reverse; }
 .hm .strip:hover .track { animation-play-state: paused; }
 @keyframes drift { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 10px)); } }
 .hm .ph { flex: 0 0 auto; width: 220px; height: 220px; border-radius: 14px; background: var(--ph); object-fit: cover; box-shadow: 0 0 0 1px rgba(60,45,25,.06); transition: transform .6s cubic-bezier(.2,.7,.2,1), box-shadow .6s ease; }
