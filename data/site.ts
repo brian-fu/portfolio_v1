@@ -19,20 +19,22 @@ export const social = {
 };
 
 export const school = {
-  mark: "W",
+  logo: "/logos/university-of-waterloo.jpg",
   label: "university of waterloo",
   href: "https://uwaterloo.ca",
 };
 
-export const experience: { role: string; joiner: string; org: Link }[] = [
+export const experience: { role: string; joiner: string; logo: string; org: Link }[] = [
   {
     role: "software engineer intern",
     joiner: "at",
+    logo: "/logos/shopify.jpg",
     org: { label: "shopify", href: "https://www.shopify.com" },
   },
   {
     role: "full-stack developer intern",
     joiner: "at",
+    logo: "/logos/wsib_innovation_lab_logo.jpg",
     org: {
       label: "wsib innovation lab",
       href: "https://www.linkedin.com/company/wsib-innovation-lab/",
@@ -41,11 +43,13 @@ export const experience: { role: string; joiner: string; org: Link }[] = [
   {
     role: "project developer",
     joiner: "for",
+    logo: "/logos/blueprint.jpg",
     org: { label: "uw blueprint", href: "https://uwblueprint.org" },
   },
   {
     role: "software engineer intern",
     joiner: "at",
+    logo: "/logos/wsib.jpg",
     org: { label: "wsib", href: "https://www.wsib.ca" },
   },
 ];
@@ -70,6 +74,10 @@ export const projects: Project[] = [
     tech: "c++20",
   },
 ];
+
+// Extra context for the chatbot beyond what's listed above. Keep it factual.
+export const about =
+  "open to software engineering internship opportunities. the best way to reach me is email.";
 
 // Suggested questions shown in the chat widget before the first message.
 export const chatExamples = [
