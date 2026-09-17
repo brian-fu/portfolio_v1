@@ -71,6 +71,13 @@ export const projects: Project[] = [
   },
 ];
 
+// Suggested questions shown in the chat widget before the first message.
+export const chatExamples = [
+  "where have you worked?",
+  "what opportunities are you currently seeking?",
+  "how do i reach you?",
+];
+
 // Swap `src: null` for an image path (e.g. "/gallery/01.jpg") to replace the placeholder square.
 export const gallery: { src: string | null; alt: string }[] = Array.from(
   { length: 10 },
