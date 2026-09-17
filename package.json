@@ -10,13 +10,11 @@
   },
   "dependencies": {
     "next": "16.1.7",
-    "nodemailer": "^8.0.3",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/nodemailer": "^7.0.11",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
