@@ -73,6 +73,24 @@ export const projects: Project[] = [
       "a text-based monopoly variant set on the university of waterloo campus written in c++20.",
     tech: "c++20",
   },
+  {
+    name: "videofy",
+    mark: "v",
+    href: "https://github.com/brian-fu/videofy",
+    summary: "pdf to short-form study videos",
+    description:
+      "turns an uploaded pdf into a brainrot-style study video, narrating the extracted content over gameplay footage.",
+    tech: "react, node.js, express, python, firebase, openai api",
+  },
+  {
+    name: "leetcodepvp",
+    mark: "lp",
+    href: "https://github.com/brian-fu/leetcodepvp",
+    summary: "live leetcode races against friends",
+    description:
+      "multiplayer leetcode app where players join a game code and race to solve the same problems, with a sandboxed runner scoring submissions.",
+    tech: "next.js, typescript, tailwind, python, flask",
+  },
 ];
 
 // Suggested questions shown in the chat widget before the first message.

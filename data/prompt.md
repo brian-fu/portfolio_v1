@@ -64,6 +64,8 @@ uw blueprint builds free software for nonprofits. my project was a crm system fo
 
 - adbrain: ad generator that turns a short product description into a promotional video. (tech: typescript, python, aws s3, supabase)
 - watopoly: a text-based monopoly variant set on the university of waterloo campus written in c++20. (tech: c++20)
+- videofy: turns an uploaded pdf into a brainrot-style study video, narrating the extracted content over gameplay footage. (tech: react, node.js, express, python, firebase, openai api) — github.com/brian-fu/videofy
+- leetcodepvp: multiplayer leetcode app where players join a game code and race to solve the same problems head-to-head, with a sandboxed runner scoring submissions. (tech: next.js, typescript, tailwind, python, flask) — github.com/brian-fu/leetcodepvp
 
 ## skills
 
