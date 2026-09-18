@@ -18,13 +18,19 @@ function Hang() {
 export default function HomePage() {
   const glyphs = (
     <div className="glyphs fade f5">
-      <a className="glyph" href={social.email} aria-label="Email">
+      <a
+        className="glyph"
+        href={social.email}
+        aria-label="Email"
+        data-ph-capture-attribute-name="social-email"
+      >
         <MailIcon />
       </a>
       <a
         className="glyph"
         href={social.linkedin}
         aria-label="LinkedIn"
+        data-ph-capture-attribute-name="social-linkedin"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -34,6 +40,7 @@ export default function HomePage() {
         className="glyph"
         href={social.github}
         aria-label="GitHub"
+        data-ph-capture-attribute-name="social-github"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -43,6 +50,7 @@ export default function HomePage() {
         className="glyph"
         href={social.x}
         aria-label="X"
+        data-ph-capture-attribute-name="social-x"
         target="_blank"
         rel="noopener noreferrer"
       >

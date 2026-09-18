@@ -14,6 +14,7 @@ export default function NameToggle({ children, footer }: { children: React.React
           className="name-btn"
           aria-controls="secret"
           aria-expanded={shown}
+          data-ph-capture-attribute-name="name-easter-egg"
           onClick={() => setShown((s) => !s)}
         >
           brian fu

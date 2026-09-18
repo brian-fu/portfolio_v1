@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { ApiError, GoogleGenAI, ThinkingLevel } from "@google/genai";
+import { captureServer } from "@/app/lib/analytics.server";
 
 const MODEL = "gemini-3.5-flash-lite";
 const MAX_MESSAGE_CHARS = 500;
@@ -57,13 +58,16 @@ function parseMessages(body: unknown): ChatMessage[] | null {
 }
 
 export async function POST(request: Request) {
+  const startedAt = Date.now();
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
   if (rateLimited(ip)) {
+    await captureServer("ask_handled", { status: "rate_limited" });
     return Response.json({ error: "rate limited" }, { status: 429 });
   }
 
   const messages = parseMessages(await request.json().catch(() => null));
   if (!messages) {
+    await captureServer("ask_handled", { status: "invalid" });
     return Response.json({ error: "invalid request" }, { status: 400 });
   }
 
@@ -100,20 +104,35 @@ export async function POST(request: Request) {
     };
 
     let reply: string;
+    let retried = false;
     try {
       reply = await ask();
     } catch (err) {
       // Transient failures (5xx, timeouts, MALFORMED_RESPONSE) usually clear on one retry.
       if (err instanceof ApiError && err.status < 500) throw err;
       console.warn("gemini request failed, retrying", err);
+      retried = true;
       reply = await ask();
     }
+    // Turn count and timings come from here rather than the browser, where a
+    // content blocker can drop them.
+    await captureServer("ask_handled", {
+      status: "ok",
+      turn: messages.filter((m) => m.from === "you").length,
+      retried,
+      duration_ms: Date.now() - startedAt,
+    });
     return Response.json({ reply });
   } catch (err) {
     console.error("gemini request failed", err);
     if (err instanceof ApiError && err.status === 429) {
+      await captureServer("ask_handled", { status: "model_rate_limited" });
       return Response.json({ error: "rate limited" }, { status: 429 });
     }
+    await captureServer("ask_handled", {
+      status: "error",
+      duration_ms: Date.now() - startedAt,
+    });
     return Response.json({ error: "server error" }, { status: 500 });
   }
 }

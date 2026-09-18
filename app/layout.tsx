@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Karla, Newsreader } from "next/font/google";
 import "./globals.css";
+import Analytics from "./components/Analytics";
 import Chat from "./components/Chat";
 import Nav from "./components/Nav";
 
@@ -22,6 +23,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Server-only, so the key is read here rather than in the client bundle.
+  const posthogKey = process.env.POSTHOG_KEY;
+
   return (
     <html lang="en" className={`${karla.variable} ${newsreader.variable}`} suppressHydrationWarning>
       <head>
@@ -39,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Nav />
           {children}
           <Chat />
+          {posthogKey && <Analytics apiKey={posthogKey} />}
         </div>
       </body>
     </html>

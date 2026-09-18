@@ -2,21 +2,44 @@
 
 import { useEffect, useRef, useState } from "react";
 import { chatExamples } from "@/data/site";
+import { capture } from "@/app/lib/analytics";
 
 type Message = { id: number; from: "you" | "bot"; text: string };
 
-async function getReply(history: Message[]): Promise<string> {
-  const res = await fetch("/api/ask", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      messages: history.map(({ from, text }) => ({ from, text })),
-    }),
+// The outcome and the wait ride along with the text so analytics can tell a
+// real answer apart from the two apologies, which look identical from here.
+// Timing lives in here rather than in the component because the lint rules
+// treat a clock read in the component body as impure.
+type Reply = {
+  text: string;
+  status: "ok" | "rate_limited" | "error";
+  durationMs: number;
+};
+
+async function getReply(history: Message[]): Promise<Reply> {
+  const startedAt = Date.now();
+  const reply = (text: string, status: Reply["status"]): Reply => ({
+    text,
+    status,
+    durationMs: Date.now() - startedAt,
   });
-  if (res.status === 429) return "you're asking fast — give me a minute and try again.";
-  if (!res.ok) throw new Error(`ask failed: ${res.status}`);
-  const data: { reply: string } = await res.json();
-  return data.reply;
+  try {
+    const res = await fetch("/api/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        messages: history.map(({ from, text }) => ({ from, text })),
+      }),
+    });
+    if (res.status === 429) {
+      return reply("you're asking fast — give me a minute and try again.", "rate_limited");
+    }
+    if (!res.ok) throw new Error(`ask failed: ${res.status}`);
+    const data: { reply: string } = await res.json();
+    return reply(data.reply, "ok");
+  } catch {
+    return reply("something went wrong on my end — try email instead.", "error");
+  }
 }
 
 export default function Chat() {
@@ -61,15 +84,20 @@ export default function Chat() {
       { id: nextId.current++, from: "you", text: t },
     ];
     setMessages(history);
-    let reply: string;
-    try {
-      reply = await getReply(history);
-    } catch {
-      reply = "something went wrong on my end — try email instead.";
-    }
+    // Which turn this is says more than the raw count: most visitors stop at
+    // one question, and the ones who don't are the interesting ones.
+    const turn = history.filter((m) => m.from === "you").length;
+    // Length, not the question itself — visitors type free text into this box.
+    capture("chat_message_sent", { turn, length: t.length });
+    const reply = await getReply(history);
+    capture("chat_reply_received", {
+      turn,
+      status: reply.status,
+      duration_ms: reply.durationMs,
+    });
     setMessages((m) => [
       ...m,
-      { id: nextId.current++, from: "bot", text: reply },
+      { id: nextId.current++, from: "bot", text: reply.text },
     ]);
     setBusy(false);
   }
@@ -106,7 +134,10 @@ export default function Chat() {
                   key={ex}
                   className="ex"
                   type="button"
-                  onClick={() => submit(ex)}
+                  onClick={() => {
+                    capture("chat_example_clicked", { question: ex });
+                    submit(ex);
+                  }}
                   tabIndex={open ? 0 : -1}
                 >
                   {ex}
@@ -189,7 +220,15 @@ export default function Chat() {
         type="button"
         aria-expanded={open}
         aria-label="Ask Brian a question"
-        onClick={() => (open ? close() : setOpen(true))}
+        data-ph-capture-attribute-name="chat-launcher"
+        onClick={() => {
+          if (open) {
+            close();
+            return;
+          }
+          capture("chat_opened");
+          setOpen(true);
+        }}
       >
         &gt;<span className="caret">_</span>
       </button>
