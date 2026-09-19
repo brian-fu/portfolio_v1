@@ -18,7 +18,7 @@ const themeScript = `(function () {
 })();`;
 
 export const metadata: Metadata = {
-  title: { default: "brian fu", template: "%s — brian fu" },
+  title: { default: "brian fu", template: "%s - brian fu" },
   description: "brian fu — cs at the university of waterloo, software engineer intern at shopify.",
 };
 
