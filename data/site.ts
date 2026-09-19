@@ -58,7 +58,7 @@ export const projects: Project[] = [
   {
     name: "adbrain",
     mark: "ab",
-    href: "#",
+    href: "https://github.com/brian-fu/adbrain",
     summary: "ai-powered ad generator",
     description:
       "ad generator that turns a short product description into a promotional video.",
@@ -67,7 +67,7 @@ export const projects: Project[] = [
   {
     name: "watopoly",
     mark: "w",
-    href: "#",
+    href: "https://github.com/brian-fu/watopoly",
     summary: "waterloo themed monopoly game",
     description:
       "a text-based monopoly variant set on the university of waterloo campus written in c++20.",
@@ -99,4 +99,3 @@ export const chatExamples = [
   "what opportunities are you currently seeking?",
   "how do i reach you?",
 ];
-
